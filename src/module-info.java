@@ -1,0 +1,3 @@
+module simuladorCompraIngresso {
+	exports simuladorCompraIngresso;
+}
