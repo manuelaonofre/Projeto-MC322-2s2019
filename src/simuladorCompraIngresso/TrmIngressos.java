@@ -1,4 +1,4 @@
-package simuladorCompraIngresso;
+package br.unicamp.ic.mc302.fila;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,13 +13,14 @@ public class TrmIngresso {
 	private Ingresso ingresso = new Ingresso();
 	private Usuario usuario = new Usuario();
 	Scanner myObj = new Scanner(System.in); 
-
+	private Pagamento pagamento = new Pagamento();
 
 	public int iniciarOperacao() {
 		int op; // codigo da operacao solicitada
 		int filme;
 		int n_ingressos;
 		int tipo_ingresso;
+		
 		
 		
 		double precoFinal = 0;
@@ -33,6 +34,18 @@ public class TrmIngresso {
 					switch(filme) {
 					case 1:
 						ingresso.setFilmeIngresso("The Joker");
+						int sessao = getInt("Escolha a sessão: 1 = 14:00, 2 = 20:00");
+						while(sessao != 9) {
+							switch(sessao) {
+							case 1:
+								ingresso.setSessao(14, 00, "Sala 1");
+								break;
+							case 2:
+								ingresso.setSessao(20, 00, "Sala 1");
+								break;
+							}
+							break;
+						}
 						break;
 					case 2:
 						ingresso.setFilmeIngresso("Avengers");
@@ -45,50 +58,55 @@ public class TrmIngresso {
 					tipo_ingresso = getInt("O tipo do Ingresso: 1 = Meia, 2 = Inteira");
 					while (tipo_ingresso != 9) {
 						switch(tipo_ingresso) {
-						case 1:
-							usuario.setIngresso(ingresso.getFilme().getNomeFilme(), i, 1);
+						case 1:							
 							System.out.println("O nome do ingresso: ");
 							String nome = myObj.nextLine();
 							usuario.setNome(nome, i);
+							usuario.setIngresso(ingresso.getFilme().getNomeFilme(), 1, nome);
 							break;
 						case 2:
-							usuario.setIngresso(ingresso.getFilme().getNomeFilme(), i, 2);
 							System.out.println("O nome do ingresso: ");
 							nome = myObj.nextLine();
 							usuario.setNome(nome, i);
+							usuario.setIngresso(ingresso.getFilme().getNomeFilme(), 2, nome);
 							break;
 						}
 						break;
 					}
 				}
 				
-				int pagamento = getInt("A forma de pagamento será: 1: Cartão de Débito, 2: Cartão de Crédito, 3: Boleto");
-				while(pagamento != 9) {
-					switch(pagamento) {
+				int pag = getInt("A forma de pagamento será: 1: Cartão de Débito, 2: Cartão de Crédito, 3: Boleto");
+				while(pag != 9) {
+					switch(pag) {
 					case 1:
+						pagamento.selecionaFormaPagamento("Cartão Débito");
 						break;
 					case 2:
+						pagamento.selecionaFormaPagamento("Cartão Crédito");
 						break;
 					case 3:	
+						pagamento.selecionaFormaPagamento("Boleto");
 						break;
 					}
 					break;
 				}
 				
-				System.out.println("Filme escolhido: " + usuario.getIngresso(0).getNome() + "\n");
+				System.out.println("Filme escolhido: " + usuario.getIngresso(0).getFilme().getNomeFilme() + "\n");
 				for(int i = 0; i < usuario.getNumIngressos(); i++) {
 					System.out.println("Nome: "+ usuario.getNome(i) + "\n");
-					System.out.println("Ingresso: "+ i + usuario.getIngresso(i).getTipo() + ' ' + usuario.getIngresso(i).getPreco() + "\n");
+					System.out.println("Tipo de Ingresso: " + usuario.getIngresso(i).getTipo() + "\n");
+					System.out.println("Preco: "+ usuario.getIngresso(i).getPreco() + "\n");
 					precoFinal += usuario.getIngresso(i).getPreco();
 				}
 				System.out.println("Preço final: " + precoFinal + "\n");
 				
 				break;
 			case 2:
-				System.out.println("Filme escolhido: " + usuario.getIngresso(0).getNome() + "\n");
+				System.out.println("Filme escolhido: " + usuario.getIngresso(0).getFilme().getNomeFilme() + "\n");
 				for(int i = 0; i < usuario.getNumIngressos(); i++) {
 					System.out.println("Nome: "+ usuario.getNome(i) + "\n");
-					System.out.println("Ingresso: "+ i + usuario.getIngresso(i).getTipo() + ' ' + usuario.getIngresso(i).getPreco() + "\n");
+					System.out.println("Tipo de Ingresso: " + usuario.getIngresso(i).getTipo() + "\n");
+					System.out.println("Preco: "+ usuario.getIngresso(i).getPreco() + "\n");
 					precoFinal += usuario.getIngresso(i).getPreco();
 				}
 				System.out.println("Preço final: " + precoFinal + "\n");
@@ -120,5 +138,16 @@ public class TrmIngresso {
 		}
 		return ((int) st.nval);
 	}
+	
+	/*	Colocar confirmação da compra dos ingressos
+	 * 	Adicionar as sessoes para poder escolher e retirar as poltronas disponiveis
+	 * 	Relatar problema de não ter mais poltronas disponiveis
+	 * 	
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * */
 
 }
