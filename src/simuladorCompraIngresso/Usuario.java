@@ -1,4 +1,4 @@
-package simuladorCompraIngresso;
+package br.unicamp.ic.mc302.fila;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,16 +8,8 @@ public class Usuario {
 	private String user;
 	private String senha;
 	private List<Ingresso> ingressos = new ArrayList<Ingresso>();
-	private int numIngressos = ingressos.size();
+	private int numIngressos;
 	
-//	
-//	public Usuario(String nome, String user, String senha) {
-//		super();
-//		this.nome = nome;
-//		this.user = user;
-//		this.senha = senha;
-//	}
-
 	public String getNome(int i) {
 		return nomes.get(i);
 	}
@@ -44,6 +36,7 @@ public class Usuario {
 	}
 	
 	public int getNumIngressos() {
+		numIngressos = ingressos.size();
 		return numIngressos;
 	}
 	
@@ -51,13 +44,15 @@ public class Usuario {
 		return this.ingressos.get(i);
 	}
 	
-	public void setIngresso(String filme, int i, int tipo) {
-		ingressos.add(new Ingresso());
-		ingressos.get(i).getFilme().setFilme(filme);
+	public void setIngresso(String filme, int tipo, String nome) {
+		Ingresso ing = new Ingresso();
+		ing.setFilmeIngresso(filme);
+		ing.setNome(nome);
 		if(tipo == 1)
-			ingressos.get(i).setTipo("meia");
+			ing.setTipo("meia");
 		if(tipo == 2)
-			ingressos.get(i).setTipo("inteira");
+			ing.setTipo("inteiro");
+		ingressos.add(ing);
 	}
 
 }
