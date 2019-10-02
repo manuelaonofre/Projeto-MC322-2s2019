@@ -1,28 +1,26 @@
-package simuladorCompraIngresso;
+package br.unicamp.ic.mc302.fila;
 
 public class Ingresso {
 	
 	private Filme filme = new Filme();
-
+	private Sessao sessao = new Sessao();
+	
 	private String nomeIngresso;
 	private String tipo;
 	private double preco;
 	
 	//poltrona escolhe pela sessao e pela sala
 	
-//	public Ingresso(String f, String nome, String tip) {
-//		this.nomeIngresso = nome;
-//		this.tipo = tip;	
-//	}
+
+	public void setSessao(int horas, int min, String sala) {
+		sessao.atribuirHorario(horas, min);
+		sessao.atribuirSala(sala);
+	}
 	
 	public void setFilmeIngresso(String f) {
 		this.filme.setFilme(f);
 	}
 	
-	public String getFilme() {
-		return this.filme.getFilme();
-	}
-
 	public void setNome(String nome) {
 		this.nomeIngresso = nome;
 	}
@@ -39,6 +37,7 @@ public class Ingresso {
 	}
 	
 	public double getPreco() {
+		preco = calculaPreco();
 		return preco;
 	}
 
