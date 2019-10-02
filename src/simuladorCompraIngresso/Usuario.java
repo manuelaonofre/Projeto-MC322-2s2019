@@ -1,10 +1,14 @@
 package simuladorCompraIngresso;
 
+import java.util.ArrayList;
+import java.util.List;
 
 public class Usuario {
 	private String nome;
 	private String user;
 	private String senha;
+	private List<Ingresso> ingressos = new ArrayList<Ingresso>();
+	private int numIngressos = ingressos.size();
 
 	public Usuario(String nome, String user, String senha) {
 		super();
@@ -38,9 +42,12 @@ public class Usuario {
 		this.senha = senha;
 	}
 	
-	@Override
-	public String toString() {
-		return "Usuario [nome=" + nome + ", user=" + user + ", senha=" + senha + "]";
+	public int getNumIngressos() {
+		return numIngressos;
+	}
+	
+	public List<Ingresso> getIngresso(int i) {
+		return this.ingressos;
 	}
 
 }

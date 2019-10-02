@@ -5,6 +5,7 @@ public class Ingresso {
 	private Filme filme;
 	private String nomeIngresso;
 	private String tipo;
+	private double preco;
 	
 	//poltrona escolhe pela sessao e pela sala
 	
@@ -35,13 +36,16 @@ public class Ingresso {
 	public String getTipo() {
 		return tipo;
 	}
+	public double getPreco() {
+		return preco;
+	}
 	
-	public double calculaPreco() {
+	public void calculaPreco() {
 		double preco = 5.0;
-		if(tipo.equalsIgnoreCase("Inteiro")) {
+		if(tipo.equalsIgnoreCase("Inteira")) {
 			preco = preco + 5.0;
 		}
-		return preco;
+		this.preco = preco;
 	}
 	
 }
