@@ -32,10 +32,10 @@ public class TrmIngresso {
 				while (filme != 9) {
 					switch(filme) {
 					case 1:
-						ingresso.setFilme("The Joker");
+						ingresso.setFilmeIngresso("The Joker");
 						break;
 					case 2:
-						ingresso.setFilme("Avengers");
+						ingresso.setFilmeIngresso("Avengers");
 						break;
 					}
 					break;
@@ -46,13 +46,13 @@ public class TrmIngresso {
 					while (tipo_ingresso != 9) {
 						switch(tipo_ingresso) {
 						case 1:
-							usuario.setIngresso(ingresso.getFilme(), i, 1);
+							usuario.setIngresso(ingresso.getFilme().getNomeFilme(), i, 1);
 							System.out.println("O nome do ingresso: ");
 							String nome = myObj.nextLine();
 							usuario.setNome(nome, i);
 							break;
 						case 2:
-							usuario.setIngresso(ingresso.getFilme(), i, 1);
+							usuario.setIngresso(ingresso.getFilme().getNomeFilme(), i, 2);
 							System.out.println("O nome do ingresso: ");
 							nome = myObj.nextLine();
 							usuario.setNome(nome, i);
@@ -75,19 +75,21 @@ public class TrmIngresso {
 					break;
 				}
 				
-				System.out.println("Filme escolhido: " + usuario.getIngresso(0).get(0).getNome() + "\n");
+				System.out.println("Filme escolhido: " + usuario.getIngresso(0).getNome() + "\n");
 				for(int i = 0; i < usuario.getNumIngressos(); i++) {
-					System.out.println("Ingresso: "+ i + usuario.getIngresso(0).get(i).getTipo() + ' ' + usuario.getIngresso(0).get(i).getPreco() + "\n");
-					precoFinal += usuario.getIngresso(0).get(i).getPreco();
+					System.out.println("Nome: "+ usuario.getNome(i) + "\n");
+					System.out.println("Ingresso: "+ i + usuario.getIngresso(i).getTipo() + ' ' + usuario.getIngresso(i).getPreco() + "\n");
+					precoFinal += usuario.getIngresso(i).getPreco();
 				}
 				System.out.println("Preço final: " + precoFinal + "\n");
 				
 				break;
 			case 2:
-				System.out.println("Filme escolhido: " + usuario.getIngresso(0).get(0).getNome() + "\n");
+				System.out.println("Filme escolhido: " + usuario.getIngresso(0).getNome() + "\n");
 				for(int i = 0; i < usuario.getNumIngressos(); i++) {
-					System.out.println("Ingresso: "+ i + usuario.getIngresso(0).get(i).getTipo() + ' ' + usuario.getIngresso(0).get(i).getPreco() + "\n");
-					precoFinal += usuario.getIngresso(0).get(i).getPreco();
+					System.out.println("Nome: "+ usuario.getNome(i) + "\n");
+					System.out.println("Ingresso: "+ i + usuario.getIngresso(i).getTipo() + ' ' + usuario.getIngresso(i).getPreco() + "\n");
+					precoFinal += usuario.getIngresso(i).getPreco();
 				}
 				System.out.println("Preço final: " + precoFinal + "\n");
 			}

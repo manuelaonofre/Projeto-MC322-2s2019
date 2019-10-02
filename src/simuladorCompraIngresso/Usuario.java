@@ -3,17 +3,12 @@ package simuladorCompraIngresso;
 import java.util.ArrayList;
 import java.util.List;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Usuario {
 	private List<String> nomes = new ArrayList<String>();
 	private String user;
 	private String senha;
 	private List<Ingresso> ingressos = new ArrayList<Ingresso>();
 	private int numIngressos = ingressos.size();
-<<<<<<< HEAD
-=======
 	
 //	
 //	public Usuario(String nome, String user, String senha) {
@@ -22,7 +17,6 @@ public class Usuario {
 //		this.user = user;
 //		this.senha = senha;
 //	}
->>>>>>> kina
 
 	public String getNome(int i) {
 		return nomes.get(i);
@@ -53,22 +47,17 @@ public class Usuario {
 		return numIngressos;
 	}
 	
-<<<<<<< HEAD
-	public List<Ingresso> getIngresso(int i) {
-		return this.ingressos;
-=======
-	public List<Ingresso> getIngresso(int i){
-		return this.ingressos;
+	public Ingresso getIngresso(int i){
+		return this.ingressos.get(i);
 	}
 	
 	public void setIngresso(String filme, int i, int tipo) {
 		ingressos.add(new Ingresso());
-		ingressos.get(i).setFilme(filme);
+		ingressos.get(i).getFilme().setFilme(filme);
 		if(tipo == 1)
 			ingressos.get(i).setTipo("meia");
 		if(tipo == 2)
 			ingressos.get(i).setTipo("inteira");
->>>>>>> kina
 	}
 
 }
